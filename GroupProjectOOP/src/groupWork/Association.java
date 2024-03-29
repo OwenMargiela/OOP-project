@@ -34,32 +34,49 @@ public class Association {
 	}
 	
 	public void ViewAssociation()
-	{		
+	{
 		idNum = 0;
 		address = "";
-		numOfClubs = 0;
+		//numOfClubs = 0;
+		
+		Scanner inp = new Scanner(System.in);
+		
+		System.out.println("Enter the ID number of the association that you want to view: ");
+		int id = inp.nextInt();
+		
+		int number;
+		String addi;	
+		
 		try {
 			Scanner FileIn = new Scanner(new File("AssociationList.txt"));
 			while(FileIn.hasNext())
 			{
-				idNum = FileIn.nextInt();
-				address = FileIn.next();
-				numOfClubs = FileIn.nextInt();
+				number = FileIn.nextInt();
+				addi = FileIn.next();
+				//numOfClubs = FileIn.nextInt();
+				
+				if(number == id) {
+					idNum = number;
+					address = addi;
+					//numOfClubs = 0;
+					break;
+				}
 				
 				System.out.println("ID Number" + idNum);
 				System.out.println("Address" + address);
-				System.out.println("Number of Clubs in association" + numOfClubs);
+				//System.out.println("Number of Clubs in association" + numOfClubs);
 
 				
 			}
 			
 		}catch(FileNotFoundException e)
 		{
-			System.out.println("Error. User information could not be retrieved.");
+			System.out.println("Error. This association could not be retrieved.");
 			e.printStackTrace();
 		}
 	
 	}
+	
 	
 	public void DeleteAssociation()
 	{
