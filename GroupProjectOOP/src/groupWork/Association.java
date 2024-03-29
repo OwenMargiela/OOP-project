@@ -6,14 +6,14 @@ import java.util.*;
 public class Association {
 	private int idNum;
 	private String address;
-	private int numOfClubs;
+	private Club club;
 	
 	//methods
 	public void addAssociation(int idNum, String address, int numOfClubs)
 	{
 		this.idNum = idNum;
 		this.address = address;
-		this.numOfClubs = numOfClubs;
+		this.club = club;
 		
 		try {
 			FileWriter AssoFile = new FileWriter("AssociationList.txt" , true);
