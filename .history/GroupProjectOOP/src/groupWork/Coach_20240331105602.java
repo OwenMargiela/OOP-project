@@ -12,16 +12,6 @@ public class Coach {
     private Date date_separation;
     private float commission_rate;
 
-    Coach() {
-        this.trn = null;
-        this.full_name = null;
-        this.date_of_birth = null;
-        this.gender = null;
-        this.employment = null;
-        this.date_separation = null;
-        this.commission_rate = 0.00F;
-    }
-
     Coach(String trn, String full_name,
             Date date_of_birth, String gender,
             Date employment, Date date_separation,

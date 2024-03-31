@@ -6,12 +6,15 @@ public class Athlete {
 	private String mName;
 	private String lName;
 	private char gender;
-	private Date date_of_birth;
+	private Date DOB;
 	private float height;
 	private float weight;
 	private String nationality;
 	private boolean affiliated;
-	private Club club;
-	private Association association;
+	
+	public void AddAthlete()
+	{
+		
+	}
 
 }

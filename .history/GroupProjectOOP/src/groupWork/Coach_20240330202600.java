@@ -12,16 +12,6 @@ public class Coach {
     private Date date_separation;
     private float commission_rate;
 
-    Coach() {
-        this.trn = null;
-        this.full_name = null;
-        this.date_of_birth = null;
-        this.gender = null;
-        this.employment = null;
-        this.date_separation = null;
-        this.commission_rate = 0.00F;
-    }
-
     Coach(String trn, String full_name,
             Date date_of_birth, String gender,
             Date employment, Date date_separation,
@@ -90,6 +80,63 @@ public class Coach {
 
     public void setCommissionRate(float commission_rate) {
         this.commission_rate = commission_rate;
+    }
+
+    public void addCoach() {
+
+        try {
+            FileWriter coachFile = new FileWriter("Coaches.txt", true);
+            coachFile.write(this.trn + " ");
+            coachFile.write(this.full_name + " ");
+
+            coachFile.write(this.date_of_birth.GetDay() + "/" +
+                    this.date_of_birth.GetMonth() + "/" +
+                    this.date_of_birth.GetYear() + " ");
+
+            coachFile.write(this.gender + " ");
+
+            coachFile.write(this.employment.GetDay() + "/" +
+                    this.employment.GetMonth() + "/" +
+                    this.employment.GetYear() + " ");
+
+            coachFile.write(this.date_separation.GetDay() + "/" +
+                    this.date_separation.GetMonth() + "/" +
+                    this.date_separation.GetYear() + " ");
+
+            coachFile.write(this.commission_rate + " ");
+            coachFile.close();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void edit_coach() throws IOException {
+
+        try {
+            BufferedReader coachScanner = new BufferedReader((new FileReader("Coaches.txt")));
+            String line;
+            while ((line = coachScanner.readLine()) != null) {
+                String[] parts = line.split(" ");
+
+                if (parts[0].equals(this.trn)) {
+                    System.out.println(line);
+                    continue;
+                }
+
+                System.out.println(parts[0] + " != " + this.trn);
+
+            }
+
+            coachScanner.close();
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
 }

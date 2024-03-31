@@ -1,16 +1,17 @@
 package groupWork;
 
 public class Club {
-	private String clubCode;
+	private int clubCode;
 	private String clubName;
 	private String clubColour;
 	private int totalMembership;
 	private String president;
 	private Coach headCoach;
-	// association ???
-
-	// primary constructor
-	public Club(String cc, String cn, String colour, int members, String pres, Coach hc) {
+	//association ???
+	
+	//primary constructor
+	public Club(int cc, String cn, String colour, int members, String pres, Coach hc)
+	{
 		clubCode = cc;
 		clubName = cn;
 		clubColour = colour;
@@ -18,8 +19,8 @@ public class Club {
 		president = pres;
 		headCoach = hc;
 	}
-
-	// getters and setters
+	
+	//getters and setters
 	public int GetTotalMembership() {
 		return totalMembership;
 	}
@@ -43,5 +44,9 @@ public class Club {
 	public void SetHeadCoach(Coach headCoach) {
 		this.headCoach = headCoach;
 	}
+
+
+	
+	
 
 }
