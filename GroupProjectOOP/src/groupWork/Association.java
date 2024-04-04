@@ -283,8 +283,59 @@ public class Association {
 	
 	public void ReportAll()
 	{
-		
+		try 
+		{
+			Scanner iFile = new Scanner(new File("AssociationList.txt"));
+			while(iFile.hasNext())
+			{
+				int idN = iFile.nextInt();
+				String addr = iFile.next();
+				int noc = iFile.nextInt();
+				
+				idNum = idN;
+				address = addr;
+				numOfClubs = noc;
+				
+				System.out.println("Association ID Number: " + idNum);
+				System.out.println("Association Address: " + address);
+				System.out.println("Number of Clubs in association: " + numOfClubs);
+				
+				try {
+					Scanner iniFile = new Scanner(new File("ClubList.txt"));
+					while(iniFile.hasNext())
+					{
+						int cc = iniFile.nextInt();
+						String cn = iniFile.next();
+						String colour = iniFile.next();
+						int members = iniFile.nextInt();
+						String pres = iniFile.next();
+						int idn = iniFile.nextInt();
+						String Addr = iniFile.next();
+						int Noc = iniFile.nextInt();
+						
+						if(idNum == idn) {
+							System.out.println("Club Name: " + cn);
+							System.out.println("Club Code: " + cc);
+							System.out.println("Club colour: " + colour);
+							System.out.println("Club president: " + pres + " \n");
+						}
+					}
+					
+					iniFile.close();
+				
+				}
+				catch(FileNotFoundException e) {
+					System.out.println("Error. Record not found");
+					e.printStackTrace();
+				}
+			}
+			iFile.close();
+							
+		}
+		catch(FileNotFoundException exx) {
+			System.out.println("File was not found.");
+			exx.printStackTrace();
+		}
 	}
-	
 
 }
