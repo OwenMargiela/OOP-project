@@ -139,6 +139,60 @@ public class Association {
 	
 
 	public void DeleteAssociation() {
+		// This method
+	        // We pass in the the file of the record we want to delete
+	        // Writes the contents of the first file to the second file
+	        // The record we wish to delete is not added to the new file
+			Scanner readerin = new Scanner(System.in);
+	
+			
+			System.out.println("Enter the ID number of the record that you would like to delete");
+			String identifier/*id number being deleted*/ = readerin.next();
+			
+	        File original = new File("AssociationList.txt");
+	        File temporaryFile = new File("Temp" + "AssociationList.txt");
+	
+	        try {
+	        	
+	            FileWriter tempFileWriter = new FileWriter(temporaryFile, true);
+	            try {
+	            	 BufferedReader coachFileScanner = new BufferedReader((new FileReader(original)));
+	
+	            	            String line;
+	
+	            	            while ((line = coachFileScanner.readLine()) != null) {
+	            	                // Gets a singular record in a file and places it into an array
+
+	            	                // Eg 000 Andre Mason 29/1/2005 M 29/3/2015 0/0/0 20000.0
+	            	                String[] parts = line.split(" ");
+	
+	            	                if (parts[0].equals(identifier)) {
+	            	                    // In this case parts[0] == "000"
+	            	                    // If its equal to the identifier, we dont write it to the new file, effectively
+	            	                    // deleting it
+	
+	            	                    continue;
+	            	                }
+	
+	            	                tempFileWriter.write(line + "\n");
+	            	            }
+	
+	            	            tempFileWriter.close();
+	            	            coachFileScanner.close();
+	            	            // We delete the old file and make the temporary file the main file
+	            	            original.delete();
+	            	            File newFileName = new File("AssociationList.txt");
+	            	            temporaryFile.renameTo(newFileName);
+	            }
+	            catch (FileNotFoundException e) {
+	                e.printStackTrace();
+	            }
+	            
+	           
+	
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 
 	}
 
