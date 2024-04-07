@@ -6,68 +6,137 @@ import java.util.*;
 public class Association {
 	private int idNum;
 	private String address;
-	private Club club;
+	private int numOfClubs;
+	public int counter;
+	
+	public Association()
+	{
+		idNum = 0;
+		address = " ";
+		numOfClubs = 0;
 
-	// methods
-	public void addAssociation(int idNum, String address, int numOfClubs) {
+	}
+	
+	//primary constructor
+	public Association(int idNum, String address, int numOfClubs)
+	{
 		this.idNum = idNum;
 		this.address = address;
-		this.club = club;
+		this.numOfClubs = numOfClubs;
+	}
+	
+	public int GetIdNum() {
+		return idNum;
+	}
 
+	public void SetIdNum(int idNum) {
+		this.idNum = idNum;
+	}
+
+	public String GetAddress() {
+		return address;
+	}
+
+	public void SetAddress(String address) {
+		this.address = address;
+	}
+
+	public int GetNumOfClubs() {
+		return numOfClubs;
+	}
+
+	public void SetNumOfClubs(int numOfClubs) {
+		this.numOfClubs = numOfClubs;
+	}
+
+	//methods
+	public void addAssociation()
+	{
+		
 		try {
-			FileWriter AssoFile = new FileWriter("AssociationList.txt", true);
-			AssoFile.write(idNum + " ");
-			AssoFile.write(address + " ");
-			AssoFile.write(numOfClubs + "");
+			int id;
+			String addr;
+			int noc;//numOfClubs
+			
+			Scanner in = new Scanner(System.in);
+			System.out.println("Enter the ID number of the Association: ");
+			id = in.nextInt();
+			
+			System.out.println("Enter the address of the Association: ");
+			addr = in.next();
+			
+			System.out.println("Enter the number of clubs in the Association: ");
+			noc = in.nextInt();
+			
+			
+			
+			Association obj = new Association(id, addr, noc);
+			
+			FileWriter AssoFile = new FileWriter("AssociationList.txt" , true);
+			AssoFile.write(id + " ");
+			AssoFile.write(addr + " ");
+			AssoFile.write(noc + "");
 			AssoFile.write("\n");
 			AssoFile.close();
 
-		} catch (IOException e) {
+			
+		}
+		catch(IOException e)
+		{
 			System.out.println("Error.This record could not be added to the file");
 			e.printStackTrace();
 		}
-
+		
 	}
-
-	public void ViewAssociation() {
+	
+	public void ViewAssociation()
+	{
 		idNum = 0;
 		address = "";
-		// numOfClubs = 0;
-
+		//numOfClubs = 0;
+		
 		Scanner inp = new Scanner(System.in);
-
+		
 		System.out.println("Enter the ID number of the association that you want to view: ");
 		int id = inp.nextInt();
-
+		
 		int number;
 		String addi;
-
+		int noc;
+		
 		try {
 			Scanner FileIn = new Scanner(new File("AssociationList.txt"));
-			while (FileIn.hasNext()) {
+			while(FileIn.hasNext())
+			{
 				number = FileIn.nextInt();
 				addi = FileIn.next();
-				// numOfClubs = FileIn.nextInt();
-
-				if (number == id) {
+				noc = FileIn.nextInt();
+				//numOfClubs = FileIn.nextInt();
+				
+				if(number == id) {
 					idNum = number;
 					address = addi;
-					// numOfClubs = 0;
+					//numOfClubs = noc;//numOfClubs
 					break;
 				}
-
-				System.out.println("ID Number" + idNum);
-				System.out.println("Address" + address);
-				// System.out.println("Number of Clubs in association" + numOfClubs);
-
+								
 			}
+			FileIn.close();
+			
+			System.out.println("Association ID Number: " + idNum);
+			System.out.println("Association Address: " + address);
+			System.out.println("Number of Clubs in association: " + numOfClubs + "\n");
 
-		} catch (FileNotFoundException e) {
+			
+		}catch(FileNotFoundException e)
+		{
 			System.out.println("Error. This association could not be retrieved.");
 			e.printStackTrace();
 		}
-
+		
+	
 	}
+	
 
 	public void DeleteAssociation() {
 
