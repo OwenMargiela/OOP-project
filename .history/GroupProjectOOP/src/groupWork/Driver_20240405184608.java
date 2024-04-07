@@ -5,9 +5,7 @@ public class Driver {
 
         Authenticater auth = new Authenticater();
 
-        // auth.addUser("100-000-000", "runner29");
-        int level = auth.Authenticate();
-        System.out.println("Level of Accesss is : " + level);
+        auth.addUser("000-000-000", "honors29");
 
         /*
          * 
