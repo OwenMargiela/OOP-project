@@ -1,5 +1,8 @@
 package groupWork;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Club {
 	private String clubCode;
 	private String name;

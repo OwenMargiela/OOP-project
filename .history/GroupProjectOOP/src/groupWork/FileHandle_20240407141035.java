@@ -120,15 +120,15 @@ public class FileHandle {
 
             coachFile.write(obj.getGender() + " ");
 
-            coachFile.write(obj.getDateOfEmployment().GetDay() + "/" +
-                    obj.getDateOfEmployment().GetMonth() + "/" +
-                    obj.getDateOfEmployment().GetYear() + " ");
+            coachFile.write(obj.getEmployment().GetDay() + "/" +
+                    obj.getEmployment().GetMonth() + "/" +
+                    obj.getEmployment().GetYear() + " ");
 
-            coachFile.write(obj.getDateOfSeparation().GetDay() + "/" +
-                    obj.getDateOfSeparation().GetMonth() + "/" +
-                    obj.getDateOfSeparation().GetYear() + " ");
+            coachFile.write(obj.getDateSeparation().GetDay() + "/" +
+                    obj.getDateSeparation().GetMonth() + "/" +
+                    obj.getDateSeparation().GetYear() + " ");
 
-            coachFile.write(obj.getCommission() + " " + "\n");
+            coachFile.write(obj.getCommissionRate() + " " + "\n");
             coachFile.close();
 
         } catch (IOException e) {
@@ -195,7 +195,7 @@ public class FileHandle {
             coachFile.write(obj.getPresident() + " ");
 
             coachFile.write(obj.getHeadCoach() + " ");
-            coachFile.write(obj.getAssociatedAssociation() + /* GetAssociation */ "" + "\n");
+            coachFile.write(obj.getAssociatedAssociation().GetIdNum() + " " + "\n");
 
             coachFile.close();
 

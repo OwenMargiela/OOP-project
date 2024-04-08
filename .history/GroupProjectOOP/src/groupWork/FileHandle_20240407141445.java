@@ -147,7 +147,7 @@ public class FileHandle {
             coachFile.write(obj.getMiddleName() + " ");
             coachFile.write(obj.getLastName() + " ");
 
-            coachFile.write(obj.getDateOfBirth().GetDay() + "/" +
+            coachFile.write(obj.getDateOfBirth().ge + "/" +
                     obj.getDateOfBirth().GetMonth() + "/" +
                     obj.getDateOfBirth().GetYear() + " ");
 
