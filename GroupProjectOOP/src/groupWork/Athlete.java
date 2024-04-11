@@ -1,136 +1,262 @@
 package groupWork;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Athlete {
-	private String trn;
-	private String firstName;
-	private String middleName;
-	private String lastName;
+	private int trn;
+	private String fName;
+	private String mName;
+	private String lName;
 	private String gender;
 	private Date dateOfBirth;
-	private double height;
-	private double weight;
+	private float height;
+	private float weight;
 	private String nationality;
+	private boolean affiClub;// Affiliated with club 
+	private boolean affiSponsor;//Affiliated with a sponsor
 	private Club club;
-	private boolean sponsored;
-
-	public Athlete(String trn, String firstName, String middleName, String lastName, String gender, Date dateOfBirth,
-			double height, double weight, String nationality) {
-		this.trn = trn;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.dateOfBirth = dateOfBirth;
-		this.height = height;
-		this.weight = weight;
-		this.nationality = nationality;
-		this.club = null; // Initially not affiliated with any club
-		this.sponsored = false; // Initially not sponsored
+	
+	//primary constructor
+	public Athlete() {
+		trn = 0;
+		fName = " ";
+		mName = " ";
+		lName = " ";
+		gender = " ";
+		dateOfBirth = new Date();
+		height = 0;
+		weight = 0;
+		nationality = " ";
+		affiClub = false;
+		affiSponsor = false;
+		club = new Club();
 	}
-
-	// Getters and setters
-	public String getTrn() {
+		
+	//Getters and setters
+	public int getTrn() {
 		return trn;
 	}
 
-	public void setTrn(String trn) {
+
+	public void setTrn(int trn) {
 		this.trn = trn;
 	}
 
-	public String getFirstName() {
-		return firstName;
+
+	public String getfName() {
+		return fName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
 
-	public String getMiddleName() {
-		return middleName;
+
+	public String getmName() {
+		return mName;
 	}
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
+
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
 
-	public String getLastName() {
-		return lastName;
+
+	public String getlName() {
+		return lName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
+
 
 	public String getGender() {
 		return gender;
 	}
 
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
+
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public double getHeight() {
+
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
-	public double getWeight() {
+
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
+
 
 	public String getNationality() {
 		return nationality;
 	}
 
+
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
+
+
+	public boolean isAffiClub() {
+		return affiClub;
+	}
+
+
+	public void setAffiClub(boolean affiClub) {
+		this.affiClub = affiClub;
+	}
+
+
+	public boolean isAffiSponsor() {
+		return affiSponsor;
+	}
+
+
+	public void setAffiSponsor(boolean affiSponsor) {
+		this.affiSponsor = affiSponsor;
+	}
+
 
 	public Club getClub() {
 		return club;
 	}
 
+
 	public void setClub(Club club) {
 		this.club = club;
 	}
+	
+	
+	public void addAthlete()
+	{
+		try {
+			int trn;
+			String fName;
+			String mName;
+			String lName;
+			String gender;
+			float height;
+			float weight;
+			String nationality;
+			Athlete a1 = new Athlete();
+			int cc;
+			String cn;
+			Club c = new Club();
+			
+			Scanner in = new Scanner(System.in);
+			System.out.println("Enter the trn of the athlete: ");
+			trn = in.nextInt();
+			
+			System.out.println("Enter the first name of the athlete: ");
+			fName = in.next();
+			
+			System.out.println("Enter the middle name of the athlete: ");
+			mName = in.next();
+			
+			System.out.println("Enter the last name of the athlete: ");
+			lName = in.next();
+			
+			System.out.println("Enter the gender of the athlete(M for male and F for female): ");
+			gender = in.next();
+			
+			System.out.println("Enter the day that the athlete was born: ");
+			int day = in.nextInt();
 
-	public boolean isSponsored() {
-		return sponsored;
-	}
+			System.out.println("Enter the month that the athlete was born: ");
+			int month = in.nextInt();
 
-	public void setSponsored(boolean sponsored) {
-		this.sponsored = sponsored;
-	}
+			System.out.println("Enter the year that the athlete was born: ");
+			int year = in.nextInt();
+			
+			System.out.println("Enter the height of the athlete : ");
+			height = in.nextFloat();
+			
+			System.out.println("Enter the weight of the athlete : ");
+			weight = in.nextFloat();
+			
+			System.out.println("Enter the nationality of the athlete : ");
+			nationality = in.next();
+			
+			System.out.println("Is this athlete affliated with any club?:(true or false) ");
+			String test = in.next();
+			
+			Date dob = new Date(day, month, year);
+			
+			if(test.equals("True") || test.equals("true"))
+			{
+				a1.setAffiClub(true);				
+				System.out.println("Enter the code of the club that you are affiliated to : ");
+				cc = in.nextInt();
+				
+				System.out.println("Enter the name of the club that you are affiliated to : ");
+				cn = in.next();
+				
+				c.setClubCode(cc);
+				c.setClubName(cn);
+			}
+			else {
+				System.out.println("The athlete is not associated with a club");
+			}
+	
+				
+			FileWriter AssoFile = new FileWriter("AthleteList.txt" , true);
+			AssoFile.write(trn + " ");
+			AssoFile.write(fName + " ");
+			AssoFile.write(mName + " ");
+			AssoFile.write(lName + " ");
+			AssoFile.write(gender + " ");
+			AssoFile.write(dob.GetDay() + " " + dob.GetMonth()  + " " + dob.GetYear() + " ");
+			AssoFile.write(height + " ");
+			AssoFile.write(weight + " ");
+			AssoFile.write(nationality + " ");
+			AssoFile.write(test + " ");
+			
+			
+			if(test.equals("True") || test.equals("true")){
+				AssoFile.write(c.getClubCode()+ " ");
+				AssoFile.write(c.getClubName()+ " ");
 
-	// Method to print details of the athlete
-	public void printDetails() {
-		System.out.println("TRN: " + trn);
-		System.out.println("Name: " + firstName + " " + middleName + " " + lastName);
-		System.out.println("Gender: " + gender);
-		System.out.println("Date of Birth: " + dateOfBirth);
-		System.out.println("Height: " + height + " cm");
-		System.out.println("Weight: " + weight + " kg");
-		System.out.println("Nationality: " + nationality);
-		if (club != null) {
-			System.out.println("Club: " + club.getName());
-		} else {
-			System.out.println("Club: Unattached");
+			}
+			
+			AssoFile.write("\n");
+			AssoFile.close();
+
+			
 		}
-		System.out.println("Sponsored: " + (sponsored ? "Yes" : "No"));
+		catch(IOException e)
+		{
+			System.out.println("Error.This record could not be added to the file");
+			e.printStackTrace();
+		}
+		
 	}
+
 }
