@@ -116,7 +116,7 @@ public class Association {
 				if(number == id) {
 					idNum = number;
 					address = addi;
-					//numOfClubs = noc;//numOfClubs
+					numOfClubs = noc;//numOfClubs
 					break;
 				}
 								
@@ -239,6 +239,7 @@ public class Association {
 				String colour = iniFile.next();
 				int members = iniFile.nextInt();
 				String pres = iniFile.next();
+				String hc = iniFile.next();
 				int idN = iniFile.nextInt();
 				String addr = iniFile.next();
 				int noc = iniFile.nextInt();
@@ -289,6 +290,7 @@ public class Association {
 						String colour = iniFile.next();
 						int members = iniFile.nextInt();
 						String pres = iniFile.next();
+						String hc = iniFile.next();
 						int idn = iniFile.nextInt();
 						String Addr = iniFile.next();
 						int Noc = iniFile.nextInt();
@@ -309,7 +311,7 @@ public class Association {
 					e.printStackTrace();
 				}
 			}
-			iFile.close();
+			iniFile.close();
 							
 		}
 		catch(FileNotFoundException exx) {
@@ -317,6 +319,7 @@ public class Association {
 			exx.printStackTrace();
 		}
 	}
+	
 
 
 }
