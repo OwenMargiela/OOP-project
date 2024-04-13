@@ -3,7 +3,7 @@ package groupWork;
 import java.io.*;
 import java.util.Scanner;
 
-public class Club {
+public class Club extends User{
 	private int clubCode;
 	private String clubName;
 	private String clubColour;
@@ -15,6 +15,7 @@ public class Club {
 	//default constructor
 	public Club()
 	{
+		super();
 		clubCode = 0;
 		clubName = " ";
 		clubColour = " ";
@@ -25,8 +26,9 @@ public class Club {
 	}
 	
 	//primary constructor
-	public Club(int cc, String cn, String colour, int members, String pres, String hc, Association asso)
+	public Club(String userName, String password,int cc, String cn, String colour, int members, String pres, String hc, Association asso)
 	{
+		super(userName, password);
 		clubCode = cc;
 		clubName = cn;
 		clubColour = colour;
@@ -96,15 +98,21 @@ public class Club {
 	
 	
 	//methods
-	public void addClub()
+	public void AddClub()
 	{
 		try {
 			int cc, members, idAsso;
 			String cn, colour, pres;
-			String hc;
+			String hc, un,pw;
 			Association asso = new Association();
 			
 			Scanner in = new Scanner(System.in);
+			System.out.println("Enter the user name assigned to the club: ");
+			un = in.next();
+			
+			System.out.println("Enter the password assigned to the club: ");
+			pw = in.next();
+			
 			System.out.println("Enter the code of the club: ");
 			cc = in.nextInt();
 			
@@ -143,9 +151,11 @@ public class Club {
 			asso.SetNumOfClubs(nocAsso);
 			
 			
-			Club obj = new Club(cc, cn, colour, members, pres, hc,asso);
+			Club obj = new Club(un, pw, cc, cn, colour, members, pres, hc,asso);
 			
 			FileWriter AssoFile = new FileWriter("ClubList.txt" , true);
+			AssoFile.write(un + " ");
+			AssoFile.write(pw + " ");
 			AssoFile.write(cc + " ");
 			AssoFile.write(cn + " ");
 			AssoFile.write(colour + " ");
@@ -168,6 +178,8 @@ public class Club {
 	
 	public void ViewClub()
 	{
+		userName = "";
+		password = "";
 		clubCode = 0;
 		clubName = "";
 		clubColour = "";
@@ -183,7 +195,7 @@ public class Club {
 		int code = inp.nextInt();
 		
 		int cc;
-		String cn;
+		String cn,un,pw;
 		String colour;
 		int members;
 		String pres;
@@ -196,6 +208,8 @@ public class Club {
 			Scanner FileIn = new Scanner(new File("ClubList.txt"));
 			while(FileIn.hasNext())
 			{
+				un = FileIn.next();
+				pw = FileIn.next();
 				cc = FileIn.nextInt();
 				cn = FileIn.next();
 				colour = FileIn.next();
@@ -211,6 +225,8 @@ public class Club {
 					associ.SetIdNum(idAsso);
 					associ.SetAddress(addrAsso);
 					associ.SetNumOfClubs(nocAsso);
+					associ.setUserName(un);
+					associ.setPassword(pw);
 					
 					clubCode = cc;
 					clubName = cn;
@@ -246,7 +262,7 @@ public class Club {
 		int nocAsso;
 		int cc, members, idAsso;
 		String cn, colour, pres;
-		String hc;
+		String hc, un, pw;
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter the id code for the club that you want the report on: ");
@@ -256,6 +272,8 @@ public class Club {
 			Scanner inFile = new Scanner(new File("ClubList.txt"));
 			while(inFile.hasNext())
 			{
+				un = inFile.next();
+				pw = inFile.next();
 				cc = inFile.nextInt();
 				cn = inFile.next();
 				colour = inFile.next();
@@ -266,7 +284,7 @@ public class Club {
 				addrAsso = inFile.next();
 				nocAsso = inFile.nextInt();
 				
-				Association asso = new Association(idAsso, addrAsso, nocAsso);
+				Association asso = new Association(un, pw, idAsso, addrAsso, nocAsso);
 
 				if(cc == Cc) {
 					clubCode = cc;
@@ -353,7 +371,7 @@ public class Club {
 		int nocAsso;
 		int cc, members, idAsso;
 		String cn, colour, pres;
-		String hc;
+		String hc, un, pw;
 		
 		Scanner in = new Scanner(System.in);
 	
@@ -361,6 +379,8 @@ public class Club {
 			Scanner inFile = new Scanner(new File("ClubList.txt"));
 			while(inFile.hasNext())
 			{
+				un = inFile.next();
+				pw = inFile.next();
 				cc = inFile.nextInt();
 				cn = inFile.next();
 				colour = inFile.next();
@@ -371,7 +391,7 @@ public class Club {
 				addrAsso = inFile.next();
 				nocAsso = inFile.nextInt();
 				
-				Association asso = new Association(idAsso, addrAsso, nocAsso);
+				Association asso = new Association(un, pw,idAsso, addrAsso, nocAsso);
 
 				clubCode = cc;
 				clubName = cn;
@@ -447,7 +467,13 @@ public class Club {
 		catch(FileNotFoundException e) {
 			System.out.println("Error. Record not found");
 			e.printStackTrace();
-		}	
+		}
+		
+		
+		
+		
 	}
+	
+
 
 }
