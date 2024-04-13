@@ -3,14 +3,16 @@ package groupWork;
 import java.io.*;
 import java.util.*;
 
-public class Association {
+public class Association extends User{
 	private int idNum;
 	private String address;
 	private int numOfClubs;
 	public int counter;
 	
+	//default constructor
 	public Association()
 	{
+		super();
 		idNum = 0;
 		address = " ";
 		numOfClubs = 0;
@@ -18,8 +20,9 @@ public class Association {
 	}
 	
 	//primary constructor
-	public Association(int idNum, String address, int numOfClubs)
+	public Association(String userName, String password, int idNum, String address, int numOfClubs)
 	{
+		super(userName, password);
 		this.idNum = idNum;
 		this.address = address;
 		this.numOfClubs = numOfClubs;
@@ -54,11 +57,18 @@ public class Association {
 	{
 		
 		try {
+			String un, pw;
 			int id;
 			String addr;
 			int noc;//numOfClubs
 			
 			Scanner in = new Scanner(System.in);
+			System.out.println("Enter the user name to assign to the Association: ");
+			un = in.next();
+			
+			System.out.println("Enter the password to assign to the Association: ");
+			pw = in.next();
+			
 			System.out.println("Enter the ID number of the Association: ");
 			id = in.nextInt();
 			
@@ -70,9 +80,11 @@ public class Association {
 			
 			
 			
-			Association obj = new Association(id, addr, noc);
+			Association obj = new Association(un, pw,id, addr, noc);
 			
 			FileWriter AssoFile = new FileWriter("AssociationList.txt" , true);
+			AssoFile.write(un + " ");
+			AssoFile.write(pw + " ");
 			AssoFile.write(id + " ");
 			AssoFile.write(addr + " ");
 			AssoFile.write(noc + "");
@@ -91,15 +103,18 @@ public class Association {
 	
 	public void ViewAssociation()
 	{
+		userName = "";
+		password = "";
 		idNum = 0;
 		address = "";
-		//numOfClubs = 0;
+		numOfClubs = 0;
 		
 		Scanner inp = new Scanner(System.in);
 		
 		System.out.println("Enter the ID number of the association that you want to view: ");
 		int id = inp.nextInt();
 		
+		String un, pw;
 		int number;
 		String addi;
 		int noc;
@@ -108,12 +123,16 @@ public class Association {
 			Scanner FileIn = new Scanner(new File("AssociationList.txt"));
 			while(FileIn.hasNext())
 			{
+				un = FileIn.next();
+				pw = FileIn.next();
 				number = FileIn.nextInt();
 				addi = FileIn.next();
 				noc = FileIn.nextInt();
 				//numOfClubs = FileIn.nextInt();
 				
 				if(number == id) {
+					userName = un;
+					password = pw;
 					idNum = number;
 					address = addi;
 					numOfClubs = noc;//numOfClubs
@@ -138,64 +157,71 @@ public class Association {
 	}
 	
 
-	public void DeleteAssociation() {
+	
+	
+	public void DeleteAssociation()
+	{
 		// This method
-	        // We pass in the the file of the record we want to delete
-	        // Writes the contents of the first file to the second file
-	        // The record we wish to delete is not added to the new file
-			Scanner readerin = new Scanner(System.in);
-	
-			
-			System.out.println("Enter the ID number of the record that you would like to delete");
-			String identifier/*id number being deleted*/ = readerin.next();
-			
-	        File original = new File("AssociationList.txt");
-	        File temporaryFile = new File("Temp" + "AssociationList.txt");
-	
-	        try {
-	        	
-	            FileWriter tempFileWriter = new FileWriter(temporaryFile, true);
-	            try {
-	            	 BufferedReader coachFileScanner = new BufferedReader((new FileReader(original)));
-	
-	            	            String line;
-	
-	            	            while ((line = coachFileScanner.readLine()) != null) {
-	            	                // Gets a singular record in a file and places it into an array
+        // We pass in the the file of the record we want to delete
+        // Writes the contents of the first file to the second file
+        // The record we wish to delete is not added to the new file
+		Scanner readerin = new Scanner(System.in);
 
-	            	                // Eg 000 Andre Mason 29/1/2005 M 29/3/2015 0/0/0 20000.0
-	            	                String[] parts = line.split(" ");
-	
-	            	                if (parts[0].equals(identifier)) {
-	            	                    // In this case parts[0] == "000"
-	            	                    // If its equal to the identifier, we dont write it to the new file, effectively
-	            	                    // deleting it
-	
-	            	                    continue;
-	            	                }
-	
-	            	                tempFileWriter.write(line + "\n");
-	            	            }
-	
-	            	            tempFileWriter.close();
-	            	            coachFileScanner.close();
-	            	            // We delete the old file and make the temporary file the main file
-	            	            original.delete();
-	            	            File newFileName = new File("AssociationList.txt");
-	            	            temporaryFile.renameTo(newFileName);
-	            }
-	            catch (FileNotFoundException e) {
-	                e.printStackTrace();
-	            }
-	            
-	           
-	
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
+		
+		System.out.println("Enter the ID number of the record that you would like to delete");
+		String identifier/*id number being deleted*/ = readerin.next();
+		
+        File original = new File("AssociationList.txt");
+        File temporaryFile = new File("Temp" + "AssociationList.txt");
 
-	}
+        try {
+        	
+            FileWriter tempFileWriter = new FileWriter(temporaryFile, true);
+            try {
+            	 BufferedReader coachFileScanner = new BufferedReader((new FileReader(original)));
 
+            	            String line;
+
+            	            while ((line = coachFileScanner.readLine()) != null) {
+            	                // Gets a singular record in a file and places it into an array
+
+            	                // Eg 000 Andre Mason 29/1/2005 M 29/3/2015 0/0/0 20000.0
+            	                String[] parts = line.split(" ");
+
+            	                if (parts[0].equals(identifier)) {
+            	                    // In this case parts[0] == "000"
+            	                    // If its equal to the identifier, we dont write it to the new file, effectively
+            	                    // deleting it
+
+            	                    continue;
+            	                }
+
+            	                tempFileWriter.write(line + "\n");
+            	            }
+
+            	            tempFileWriter.close();
+            	            coachFileScanner.close();
+            	            // We delete the old file and make the temporary file the main file
+            	            original.delete();
+            	            File newFileName = new File("AssociationList.txt");
+            	            temporaryFile.renameTo(newFileName);
+            }
+            catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            
+           
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+	
+		
+		
+
+	
 	public void SingleReport()
 	{
 		Scanner in = new Scanner(System.in);
@@ -206,6 +232,8 @@ public class Association {
 			Scanner inFile = new Scanner(new File("AssociationList.txt"));
 			while(inFile.hasNext())
 			{
+				String un = inFile.next();
+				String pw = inFile.next();
 				int idN = inFile.nextInt();
 				String addr = inFile.next();
 				int noc = inFile.nextInt();
@@ -234,6 +262,8 @@ public class Association {
 			Scanner iniFile = new Scanner(new File("ClubList.txt"));
 			while(iniFile.hasNext())
 			{
+				String name = iniFile.next();
+				String pwrd = iniFile.next();
 				int cc = iniFile.nextInt();
 				String cn = iniFile.next();
 				String colour = iniFile.next();
@@ -269,6 +299,8 @@ public class Association {
 			Scanner iFile = new Scanner(new File("AssociationList.txt"));
 			while(iFile.hasNext())
 			{
+				String un = iFile.next();
+				String pw = iFile.next();
 				int idN = iFile.nextInt();
 				String addr = iFile.next();
 				int noc = iFile.nextInt();
@@ -285,6 +317,8 @@ public class Association {
 					Scanner iniFile = new Scanner(new File("ClubList.txt"));
 					while(iniFile.hasNext())
 					{
+						String name = iniFile.next();
+						String pwrd = iniFile.next();
 						int cc = iniFile.nextInt();
 						String cn = iniFile.next();
 						String colour = iniFile.next();
@@ -311,7 +345,7 @@ public class Association {
 					e.printStackTrace();
 				}
 			}
-			iniFile.close();
+			iFile.close();
 							
 		}
 		catch(FileNotFoundException exx) {
@@ -321,5 +355,5 @@ public class Association {
 	}
 	
 
-
 }
+
