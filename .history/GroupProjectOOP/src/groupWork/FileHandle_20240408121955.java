@@ -107,4 +107,103 @@ public class FileHandle {
 
     }
 
+    public void addCoach(Coach obj) {
+
+        try {
+            FileWriter coachFile = new FileWriter("Coaches.txt", true);
+            coachFile.write(obj.getTrn() + " ");
+            coachFile.write(obj.getFullName() + " ");
+
+            coachFile.write(obj.getDateOfBirth().GetDay() + "/" +
+                    obj.getDateOfBirth().GetMonth() + "/" +
+                    obj.getDateOfBirth().GetYear() + " ");
+
+            coachFile.write(obj.getGender() + " ");
+
+            coachFile.write(obj.getDateOfEmployment().GetDay() + "/" +
+                    obj.getDateOfEmployment().GetMonth() + "/" +
+                    obj.getDateOfEmployment().GetYear() + " ");
+
+            coachFile.write(obj.getDateOfSeparation().GetDay() + "/" +
+                    obj.getDateOfSeparation().GetMonth() + "/" +
+                    obj.getDateOfSeparation().GetYear() + " ");
+
+            coachFile.write(obj.getCommission() + " " + "\n");
+            coachFile.close();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addAthlete(Athlete obj) {
+
+        try {
+            FileWriter coachFile = new FileWriter("Athletes.txt", true);
+            coachFile.write(obj.getTrn() + " ");
+            coachFile.write(obj.getFirstName() + " ");
+            coachFile.write(obj.getMiddleName() + " ");
+            coachFile.write(obj.getLastName() + " ");
+
+            coachFile.write(obj.getDateOfBirth().GetDay() + "/" +
+                    obj.getDateOfBirth().GetMonth() + "/" +
+                    obj.getDateOfBirth().GetYear() + " ");
+
+            coachFile.write(obj.getGender() + " ");
+
+            coachFile.write(obj.getHeight() + " ");
+            coachFile.write(obj.getWeight() + " ");
+            coachFile.write(obj.getNationality() + " ");
+            coachFile.write(obj.getClub().getName() + " ");
+            coachFile.write(obj.isSponsored() + " " + "\n");
+            coachFile.close();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addSponsorship(Sponsorship obj) {
+
+        try {
+            FileWriter coachFile = new FileWriter("Sponsorship.txt", true);
+            coachFile.write(obj.getSponsorName() + " ");
+            coachFile.write(obj.getAthleteName() + " ");
+            coachFile.write(obj.getAmount() + " " + "\n");
+            coachFile.close();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addClub(Club obj) {
+
+        try {
+            FileWriter coachFile = new FileWriter("Athletes.txt", true);
+            coachFile.write(obj.getClubCode() + " ");
+            coachFile.write(obj.getName() + " ");
+            coachFile.write(obj.getColor() + " ");
+            coachFile.write(obj.getTotalMembership() + " ");
+
+            coachFile.write(obj.getPresident() + " ");
+
+            coachFile.write(obj.getHeadCoach() + " ");
+            coachFile.write(obj.getAssociatedAssociation() + /* GetAssociation */ "" + "\n");
+
+            coachFile.close();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
 }
