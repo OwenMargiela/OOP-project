@@ -1,10 +1,9 @@
 package groupWork;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
-public class Athlete {
+public class Athlete extends User{
 	private int trn;
 	private String fName;
 	private String mName;
@@ -20,6 +19,7 @@ public class Athlete {
 	
 	//primary constructor
 	public Athlete() {
+		super();
 		trn = 0;
 		fName = " ";
 		mName = " ";
@@ -158,6 +158,7 @@ public class Athlete {
 	public void addAthlete()
 	{
 		try {
+			String un, pw;
 			int trn;
 			String fName;
 			String mName;
@@ -172,6 +173,12 @@ public class Athlete {
 			Club c = new Club();
 			
 			Scanner in = new Scanner(System.in);
+			System.out.println("Enter the username assigned to the athlete: ");
+			un = in.next();
+			
+			System.out.println("Enter the password assigned to the athlete: ");
+			pw = in.next();
+			
 			System.out.println("Enter the trn of the athlete: ");
 			trn = in.nextInt();
 			
@@ -228,6 +235,8 @@ public class Athlete {
 	
 				
 			FileWriter AssoFile = new FileWriter("AthleteList.txt" , true);
+			AssoFile.write(un + " ");
+			AssoFile.write(pw + " ");
 			AssoFile.write(trn + " ");
 			AssoFile.write(fName + " ");
 			AssoFile.write(mName + " ");
@@ -257,6 +266,91 @@ public class Athlete {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void ViewAthlete()
+	{
+		userName = "";
+		password = "";
+		trn = 0;
+		fName = " ";
+		mName = " ";
+		lName = " ";
+		gender = " ";
+		dateOfBirth = new Date();
+		height = 0;
+		weight = 0;
+		nationality = " ";
+		affiClub = false;
+		affiSponsor = false;
+		club = new Club();
+		
+		try {
+			String un;
+			String pw;
+			int trN;
+			String fn;
+			String mn;
+			String ln;
+			String gen;
+			int day;
+			int month;
+			int year;
+			float h;//height
+			float w;//weight
+			String nat;
+			String clob;
+			
+			Scanner athScanner = new Scanner(System.in);
+			System.out.println("Enter the trn of the athlete that you want to view");
+			int num = athScanner.nextInt();
+
+			Scanner inFile = new Scanner(new File("AthleteList"));
+			while(inFile.hasNext())
+			{
+				un = inFile.next();
+				pw = inFile.next();
+				trN = inFile.nextInt();
+				fn = inFile.next();
+				mn = inFile.next();
+				ln = inFile.next();
+				gen = inFile.next();
+				day = inFile.nextInt();
+				month = inFile.nextInt();
+				year = inFile.nextInt();
+				h = inFile.nextFloat();
+				w = inFile.nextFloat();
+				nat = inFile.next();
+				clob = inFile.next();
+				
+				if(num == trN) {
+					trn = trN;
+					fName = fn;
+					mName = mn;
+					lName = ln;
+					gender = gen;
+					dateOfBirth = new Date(day, month, year);
+					height = h;
+					weight = w;
+					nationality = nat;
+				}
+			}
+			inFile.close();
+			
+			System.out.println("TRN: " + trn);
+			System.out.println("First Name: " + fName);
+			System.out.println("Middle Name: " + mName);
+			System.out.println("Last Name: " + lName);
+			System.out.println("Gender: " + gender);
+			System.out.println("DOB: " + dateOfBirth);
+			System.out.println("Height: " + height);
+			System.out.println("Weight: " + weight);
+			System.out.println("Nationality: " + nationality);
+
+		}
+		catch(FileNotFoundException e) {
+			
+		}
 	}
 
 }
