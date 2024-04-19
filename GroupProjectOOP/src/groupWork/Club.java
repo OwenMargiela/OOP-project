@@ -3,7 +3,7 @@ package groupWork;
 import java.io.*;
 import java.util.Scanner;
 
-public class Club extends User {
+public class Club extends User{
 	private int clubCode;
 	private String clubName;
 	private String clubColour;
@@ -11,9 +11,10 @@ public class Club extends User {
 	private String president;
 	private String headCoach;
 	private Association associ;
-
-	// default constructor
-	public Club() {
+	
+	//default constructor
+	public Club()
+	{
 		super();
 		clubCode = 0;
 		clubName = " ";
@@ -23,10 +24,10 @@ public class Club extends User {
 		headCoach = " ";
 		associ = new Association();
 	}
-
-	// primary constructor
-	public Club(String userName, String password, int cc, String cn, String colour, int members, String pres, String hc,
-			Association asso) {
+	
+	//primary constructor
+	public Club(String userName, String password,int cc, String cn, String colour, int members, String pres, String hc, Association asso)
+	{
 		super(userName, password);
 		clubCode = cc;
 		clubName = cn;
@@ -36,9 +37,9 @@ public class Club extends User {
 		headCoach = hc;
 		associ = asso;
 	}
-
-	// getters and setters
-
+	
+	//getters and setters
+	
 	public int GetTotalMembership() {
 		return totalMembership;
 	}
@@ -86,7 +87,7 @@ public class Club extends User {
 	public void SetHeadCoach(String headCoach) {
 		this.headCoach = headCoach;
 	}
-
+	
 	public Association getAssoci() {
 		return associ;
 	}
@@ -94,65 +95,68 @@ public class Club extends User {
 	public void setAssoci(Association associ) {
 		this.associ = associ;
 	}
-
-	// methods
-	public void AddClub() {
+	
+	
+	//methods
+	public void AddClub()
+	{
 		try {
 			int cc, members, idAsso;
 			String cn, colour, pres;
-			String hc, un, pw;
+			String hc, un,pw;
 			Association asso = new Association();
-
+			
 			Scanner in = new Scanner(System.in);
-
-			System.out.println("Enter the code of the club: ");
-			cc = in.nextInt();
-
-			System.out.println("Enter the name of the club: ");
-			cn = in.next();
-
 			System.out.println("Enter the user name assigned to the club: ");
 			un = in.next();
-
+			
 			System.out.println("Enter the password assigned to the club: ");
 			pw = in.next();
-
+			
+			System.out.println("Enter the code of the club: ");
+			cc = in.nextInt();
+			
+			System.out.println("Enter the name of the club: ");
+			cn = in.next();
+			
 			System.out.println("Enter the colour of the club: ");
 			colour = in.next();
-
+			
 			System.out.println("Enter the number of persons in the club: ");
 			members = in.nextInt();
-
+			
 			System.out.println("Enter the name president of the club: ");
 			pres = in.next();
-
+			
 			System.out.println("Enter the trn of the coach of the club: ");
 			String coaTrn = in.next();
-
+			
 			System.out.println("Enter the head Coach of the club is: ");
 			hc = in.next();
-
+			
+	
 			System.out.println("Enter the id number of association that the club is related to: ");
 			idAsso = in.nextInt();
-
+			
 			System.out.println("Enter the address of the association that the club is related to: ");
 			String addrAsso = in.next();
-
+			
 			System.out.println("Enter the number of clubs in the association that the club is related to: ");
 			int nocAsso = in.nextInt();
-
+			
 			Association a1 = new Association();
 
 			asso.SetIdNum(idAsso);
 			asso.SetAddress(addrAsso);
 			asso.SetNumOfClubs(nocAsso);
-
-			Club obj = new Club(un, pw, cc, cn, colour, members, pres, hc, asso);
-
-			FileWriter AssoFile = new FileWriter("ClubList.txt", true);
-			AssoFile.write(cc + " ");
+			
+			
+			Club obj = new Club(un, pw, cc, cn, colour, members, pres, hc,asso);
+			
+			FileWriter AssoFile = new FileWriter("ClubList.txt" , true);
 			AssoFile.write(un + " ");
 			AssoFile.write(pw + " ");
+			AssoFile.write(cc + " ");
 			AssoFile.write(cn + " ");
 			AssoFile.write(colour + " ");
 			AssoFile.write(members + " ");
@@ -162,14 +166,18 @@ public class Club extends User {
 			AssoFile.write("\n");
 			AssoFile.close();
 
-		} catch (IOException e) {
+			
+		}
+		catch(IOException e)
+		{
 			System.out.println("Error.This record could not be added to the file");
 			e.printStackTrace();
-		}
-
+		}	
+	
 	}
-
-	public void ViewClub() {
+	
+	public void ViewClub()
+	{
 		userName = "";
 		password = "";
 		clubCode = 0;
@@ -180,14 +188,14 @@ public class Club extends User {
 		headCoach = "";
 		Club c = new Club();
 		associ = new Association();
-
+		
 		Scanner inp = new Scanner(System.in);
-
+		
 		System.out.println("Enter the code for club that you want to view: ");
 		int code = inp.nextInt();
-
+		
 		int cc;
-		String cn, un, pw;
+		String cn,un,pw;
 		String colour;
 		int members;
 		String pres;
@@ -195,10 +203,11 @@ public class Club extends User {
 		int idAsso;
 		String addrAsso;
 		int nocAsso;
-
+		
 		try {
 			Scanner FileIn = new Scanner(new File("ClubList.txt"));
-			while (FileIn.hasNext()) {
+			while(FileIn.hasNext())
+			{
 				un = FileIn.next();
 				pw = FileIn.next();
 				cc = FileIn.nextInt();
@@ -210,14 +219,15 @@ public class Club extends User {
 				idAsso = FileIn.nextInt();
 				addrAsso = FileIn.next();
 				nocAsso = FileIn.nextInt();
-
-				if (cc == code) {
+				
+				
+				if(cc == code) {
 					associ.SetIdNum(idAsso);
 					associ.SetAddress(addrAsso);
 					associ.SetNumOfClubs(nocAsso);
 					associ.setUserName(un);
 					associ.setPassword(pw);
-
+					
 					clubCode = cc;
 					clubName = cn;
 					clubColour = colour;
@@ -226,38 +236,42 @@ public class Club extends User {
 					c.setAssoci(associ);
 					break;
 				}
-
+								
 			}
 			FileIn.close();
-
+			
 			System.out.println("Club Code: " + clubCode);
 			System.out.println("Club Name: " + clubName);
 			System.out.println("Club Colour: " + clubColour);
 			System.out.println("Total membership of Club: " + totalMembership);
 			System.out.println("Club president : " + president);
 			System.out.println("Club Association: " + associ.GetIdNum());
-
-		} catch (FileNotFoundException e) {
+			
+		}catch(FileNotFoundException e)
+		{
 			System.out.println("Error. This association could not be retrieved.");
 			e.printStackTrace();
 		}
-
+		
+	
 	}
-
-	public void SingleReport() {
+	
+	public void SingleReport()
+	{
 		String addrAsso;
 		int nocAsso;
 		int cc, members, idAsso;
 		String cn, colour, pres;
 		String hc, un, pw;
-
+		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Enter the id code for the club that you want the report on: ");
 		int Cc = in.nextInt();
-
+	
 		try {
 			Scanner inFile = new Scanner(new File("ClubList.txt"));
-			while (inFile.hasNext()) {
+			while(inFile.hasNext())
+			{
 				un = inFile.next();
 				pw = inFile.next();
 				cc = inFile.nextInt();
@@ -269,10 +283,10 @@ public class Club extends User {
 				idAsso = inFile.nextInt();
 				addrAsso = inFile.next();
 				nocAsso = inFile.nextInt();
-
+				
 				Association asso = new Association(un, pw, idAsso, addrAsso, nocAsso);
 
-				if (cc == Cc) {
+				if(cc == Cc) {
 					clubCode = cc;
 					clubName = cn;
 					clubColour = colour;
@@ -283,14 +297,15 @@ public class Club extends User {
 					break;
 				}
 			}
-
+			
 			inFile.close();
-
-		} catch (FileNotFoundException e) {
+		
+		}
+		catch(FileNotFoundException e) {
 			System.out.println("Error. Record not found");
 			e.printStackTrace();
 		}
-
+		
 		System.out.println("Club Code: " + clubCode);
 		System.out.println("Club Name: " + clubName);
 		System.out.println("Club Colour: " + clubColour);
@@ -298,10 +313,11 @@ public class Club extends User {
 		System.out.println("Club president : " + president);
 		System.out.println("Club Head Coach : " + headCoach);
 		System.out.println("Club Association: " + associ.GetIdNum());
-
+		
 		try {
 			Scanner iniFile = new Scanner(new File("AthleteList.txt"));
-			while (iniFile.hasNext()) {
+			while(iniFile.hasNext())
+			{
 				int trn = iniFile.nextInt();
 				String fName = iniFile.next();
 				String mName = iniFile.next();
@@ -313,11 +329,11 @@ public class Club extends User {
 				float height = iniFile.nextFloat();
 				float weight = iniFile.nextFloat();
 				String nationality = iniFile.next();
-				String AffiClub = iniFile.next();
-				int clubc = iniFile.nextInt();
+				String AffiClub = iniFile.next();						
+				int clubc = iniFile.nextInt(); 
 				String name = iniFile.next();
-
-				if (Cc == clubc) {
+				
+				if(Cc == clubc) {
 					System.out.println("Athlete trn: " + trn);
 					System.out.println("Athlete First Name: " + fName);
 					System.out.println("Athlete Middle Name: " + mName);
@@ -328,38 +344,41 @@ public class Club extends User {
 					System.out.println("Athlete weight: " + weight);
 					System.out.println("Athlete nationality: " + nationality);
 					System.out.println("Is Athlete affiliated with a club: " + AffiClub);
-					if (AffiClub.equals("True") || AffiClub.equals("true")) {
-
+					if(AffiClub.equals("True") || AffiClub.equals("true")) {
+						
 						System.out.println("Athlete club code: " + clubc);
 						System.out.println("Athlete club name: " + name + " \n");
 					}
-
+					
 					System.out.println("\n");
-
+				
 				}
 			}
-
+			
 			iniFile.close();
-
-		} catch (FileNotFoundException e) {
+		
+		}
+		catch(FileNotFoundException e) {
 			System.out.println("Error. Record not found");
 			e.printStackTrace();
 		}
-
+		
 	}
-
-	public void ReportAll() {
+	
+	public void ReportAll()
+	{
 		String addrAsso;
 		int nocAsso;
 		int cc, members, idAsso;
 		String cn, colour, pres;
 		String hc, un, pw;
-
+		
 		Scanner in = new Scanner(System.in);
-
+	
 		try {
 			Scanner inFile = new Scanner(new File("ClubList.txt"));
-			while (inFile.hasNext()) {
+			while(inFile.hasNext())
+			{
 				un = inFile.next();
 				pw = inFile.next();
 				cc = inFile.nextInt();
@@ -371,8 +390,8 @@ public class Club extends User {
 				idAsso = inFile.nextInt();
 				addrAsso = inFile.next();
 				nocAsso = inFile.nextInt();
-
-				Association asso = new Association(un, pw, idAsso, addrAsso, nocAsso);
+				
+				Association asso = new Association(un, pw,idAsso, addrAsso, nocAsso);
 
 				clubCode = cc;
 				clubName = cn;
@@ -381,7 +400,7 @@ public class Club extends User {
 				president = pres;
 				headCoach = hc;
 				associ = asso;
-
+				
 				System.out.println("Club Code: " + clubCode);
 				System.out.println("Club Name: " + clubName);
 				System.out.println("Club Colour: " + clubColour);
@@ -389,10 +408,12 @@ public class Club extends User {
 				System.out.println("Club president : " + president);
 				System.out.println("Club Head Coach : " + headCoach);
 				System.out.println("Club Association: " + associ.GetIdNum());
-
+				
+				
 				try {
 					Scanner iniFile = new Scanner(new File("AthleteList.txt"));
-					while (iniFile.hasNext()) {
+					while(iniFile.hasNext())
+					{
 						int trn = iniFile.nextInt();
 						String fName = iniFile.next();
 						String mName = iniFile.next();
@@ -405,10 +426,11 @@ public class Club extends User {
 						float height = iniFile.nextFloat();
 						float weight = iniFile.nextFloat();
 						String nationality = iniFile.next();
-						String AffiClub = iniFile.next();
-						int clubc = iniFile.nextInt();
+						String AffiClub = iniFile.next();						
+						int clubc = iniFile.nextInt(); 
 						String name = iniFile.next();
-
+						
+						
 						System.out.println("Athlete trn: " + trn);
 						System.out.println("Athlete First Name: " + fName);
 						System.out.println("Athlete Middle Name: " + mName);
@@ -419,32 +441,40 @@ public class Club extends User {
 						System.out.println("Athlete weight: " + weight);
 						System.out.println("Athlete nationality: " + nationality);
 						System.out.println("Is Athlete affiliated with a club: " + AffiClub);
-						if (AffiClub.equals("True") || AffiClub.equals("true")) {
-
+						if(AffiClub.equals("True") || AffiClub.equals("true")) {
+							
 							System.out.println("Athlete club code: " + clubc);
 							System.out.println("Athlete club name: " + name + " \n");
 						}
-
-						System.out.println("\n");
-
+							
+							System.out.println("\n");
+						
 					}
-
+					
 					iniFile.close();
-
-				} catch (FileNotFoundException e) {
+				
+				}
+				catch(FileNotFoundException e) {
 					System.out.println("Error. Record not found");
 					e.printStackTrace();
 				}
-
+				
 			}
-
+			
 			inFile.close();
-
-		} catch (FileNotFoundException e) {
+		
+		}
+		catch(FileNotFoundException e) {
 			System.out.println("Error. Record not found");
 			e.printStackTrace();
 		}
-
+		
+		
+		
+		
 	}
+	
+
 
 }
+
