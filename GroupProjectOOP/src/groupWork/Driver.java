@@ -17,12 +17,13 @@ public class Driver {
 		Coach co1 = new Coach();
 		Sponsor s1 = new Sponsor();
 		Admin obj = new Admin();
-		co1.addCoach();
 		obj.AddAdmin();
 		int n = 0;
 		int x = 0;
 
 		do {
+			System.out.print("\033[H\033[2J");  
+			System.out.flush(); 
 			Scanner in = new Scanner(System.in);
 
 			System.out.println("1 - Administrator");
@@ -31,11 +32,18 @@ public class Driver {
 			System.out.println("Enter the type of user that you are (1 or 2): ");
 			int user = in.nextInt();
 
+			System.out.print("\033[H\033[2J");  
+			System.out.flush(); 
+
 			switch (user) {
 				case 1:
+				do {
 					userRef = new Admin();
 					userRef.LogIn();
 					String password = userRef.getPassword();
+
+					System.out.print("\033[H\033[2J");   
+
 					try {
 						Scanner inFile = new Scanner(new File("Adminpassword.txt"));
 						while (inFile.hasNext()) {
@@ -50,7 +58,12 @@ public class Driver {
 								System.out.println("4 - Coach");
 								System.out.println("5 - Sponsor");
 
+
 								int option = inp.nextInt();
+
+								System.out.print("\033[H\033[2J");  
+								System.out.flush(); 
+
 								switch (option) {
 									case 1:
 										System.out.println("Choose action: ");
@@ -60,7 +73,12 @@ public class Driver {
 										System.out.println("4 - Produce report for a single association : ");
 										System.out.println("5 - Produce report for all associations: ");
 
+
 										int action1 = inp.nextInt();
+
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
+
 										switch (action1) {
 											case 1:
 												A1.addAssociation();
@@ -94,9 +112,16 @@ public class Driver {
 												System.out.println("Invalid input.");
 												break;
 										}
+
+										
 										break;
 
+										
+						
+
 									case 2:
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 										System.out.println("Choose action: ");
 										System.out.println("1 - Add Club: ");
 										System.out.println("2 - Edit Club: ");
@@ -105,6 +130,10 @@ public class Driver {
 										System.out.println("5 - Produce report for all Club: ");
 
 										int action2 = inp.nextInt();
+
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
+
 										switch (action2) {
 											case 1:
 												c1.AddClub();
@@ -136,6 +165,7 @@ public class Driver {
 													// TODO Auto-generated catch block
 													e.printStackTrace();
 												}
+												
 
 												break;
 											case 4:
@@ -149,15 +179,21 @@ public class Driver {
 												break;
 
 										}
+										
 										break;
 
 									case 3:
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 										System.out.println("Choose action: ");
 										System.out.println("1 - Add Athlete: ");
 										System.out.println("2 - Edit Athlete: ");
 										System.out.println("3 - Delete Athlete: ");
 
 										int action3 = inp.nextInt();
+
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 										switch (action3) {
 											case 1:
 												A.addAthlete();
@@ -200,12 +236,17 @@ public class Driver {
 										break;
 
 									case 4:
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 										System.out.println("Choose action: ");
 										System.out.println("1 - Add Coach: ");
 										System.out.println("2 - Edit Coach: ");
 										System.out.println("3 - Delete Coach: ");
 
 										int action4 = inp.nextInt();
+
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 										switch (action4) {
 											case 1:
 												co1.addCoach();
@@ -246,12 +287,18 @@ public class Driver {
 
 										break;
 									case 5:
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 										System.out.println("Choose action: ");
 										System.out.println("1 - Add sponsor: ");
 										System.out.println("2 - Edit sponsor: ");
 										System.out.println("3 - Delete sponsor: ");
 
 										int action5 = inp.nextInt();
+
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
+
 										switch (action5) {
 											case 1:
 												s1.AddSponsor();
@@ -301,6 +348,7 @@ public class Driver {
 							} else {
 								x = 1;
 							}
+							break;
 						}
 						inFile.close();
 
@@ -312,6 +360,9 @@ public class Driver {
 						System.out.println("This file does not exist");
 						e.printStackTrace();
 					}
+					
+				} while (x==1);
+					
 					break;
 				case 2:
 					Scanner userIn = new Scanner(System.in);
@@ -323,10 +374,16 @@ public class Driver {
 
 					int usr = userIn.nextInt();
 
+					System.out.print("\033[H\033[2J");  
+					System.out.flush(); 
+
 					switch (usr) {
 						case 1:
 							userRef = new Association();
 							userRef.LogIn();
+							System.out.print("\033[H\033[2J");  
+							System.out.flush(); 
+
 							String userNam = userRef.getUserName();
 							String passwrd = userRef.getPassword();
 
@@ -348,6 +405,9 @@ public class Driver {
 									if (userNAME.equals(userNAME) && p.equals(passwrd)) {
 										Scanner assoIn = new Scanner(System.in);
 
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
+
 										System.out.println("Welcome Association.");
 										System.out.println("Options are below.");
 										System.out.println("1 - View Associations.");
@@ -356,6 +416,9 @@ public class Driver {
 
 										// input
 										int options = assoIn.nextInt();
+
+										System.out.print("\033[H\033[2J");  
+										System.out.flush(); 
 
 										switch (options) {
 											case 1:
@@ -373,6 +436,7 @@ public class Driver {
 
 										}
 									}
+									break;
 
 								}
 								assoFile.close();
@@ -401,7 +465,7 @@ public class Driver {
 									uname = cFile.next();
 									pwrd = cFile.next();
 
-									if (un.equals(uname) && pwrd.equals(pw)) {
+									if (uname.equals(un) && pwrd.equals(pw)) {
 										Scanner cIn = new Scanner(System.in);
 
 										System.out.println("Welcome Club.");
@@ -411,6 +475,8 @@ public class Driver {
 										System.out.println("View Athletes.");
 
 										int options = cIn.nextInt();
+										System.out.print("\033[H\033[2J");  
+										System.out.flush();
 
 										switch (options) {
 											case 1:
@@ -430,7 +496,7 @@ public class Driver {
 									}
 								}
 								cFile.close();
-								if (uname.equals("") || pwrd.equals("")) {
+								if (uname.equals("")|| pwrd.equals("")) {
 									System.out.println("User entered incorrect username or password");
 
 								}
@@ -466,6 +532,9 @@ public class Driver {
 
 										int options = athIn.nextInt();
 
+										System.out.print("\033[H\033[2J");  
+										System.out.flush();
+
 										switch (options) {
 											case 1:
 												A1.ViewAssociation();
@@ -482,6 +551,7 @@ public class Driver {
 										}
 
 									}
+									
 
 								}
 								athFile.close();
