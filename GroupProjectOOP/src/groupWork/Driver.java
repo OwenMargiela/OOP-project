@@ -19,9 +19,10 @@ public class Driver {
 		Admin obj = new Admin();
 		obj.AddAdmin();
 		int n = 0;
-		int x = 0;
 
 		do {
+			int x;
+
 			System.out.print("\033[H\033[2J");  
 			System.out.flush(); 
 			Scanner in = new Scanner(System.in);
@@ -38,6 +39,9 @@ public class Driver {
 			switch (user) {
 				case 1:
 				do {
+					x = 0;
+
+
 					userRef = new Admin();
 					userRef.LogIn();
 					String password = userRef.getPassword();
@@ -380,12 +384,13 @@ public class Driver {
 					switch (usr) {
 						case 1:
 							userRef = new Association();
-							userRef.LogIn();
-							System.out.print("\033[H\033[2J");  
-							System.out.flush(); 
+							userRef.LogIn(); 
 
 							String userNam = userRef.getUserName();
 							String passwrd = userRef.getPassword();
+
+							System.out.print("\033[H\033[2J");  
+							System.out.flush();
 
 							try {
 								String userNAME = "";
@@ -402,7 +407,7 @@ public class Driver {
 									address = assoFile.next();
 									numOfClubs = assoFile.nextInt();
 
-									if (userNAME.equals(userNAME) && p.equals(passwrd)) {
+									if (userNAME.equals(userNam) && p.equals(passwrd)) {
 										Scanner assoIn = new Scanner(System.in);
 
 										System.out.print("\033[H\033[2J");  
@@ -435,12 +440,13 @@ public class Driver {
 												break;
 
 										}
+										break;
+
 									}
-									break;
 
 								}
 								assoFile.close();
-								if (userNAME.equals("") || p.equals("")) {
+								if (userNAME != userNam || p != passwrd) {
 									System.out.println("User entered incorrect username or password");
 
 								}
@@ -453,10 +459,12 @@ public class Driver {
 
 							break;
 						case 2:
+							String un = "";
+							String pw = "";
 							userRef = new Club();
 							userRef.LogIn();
-							String un = userRef.getUserName();
-							String pw = userRef.getPassword();
+							un = userRef.getUserName();
+							pw = userRef.getPassword();
 
 							try {
 								String uname = "", pwrd = "";
@@ -496,7 +504,7 @@ public class Driver {
 									}
 								}
 								cFile.close();
-								if (uname.equals("")|| pwrd.equals("")) {
+								if (uname != un|| pwrd != pw) {
 									System.out.println("User entered incorrect username or password");
 
 								}
@@ -556,7 +564,7 @@ public class Driver {
 								}
 								athFile.close();
 
-								if (uName.equals("") || pwd.equals("")) {
+								if (uName != un1|| pwd != pw1) {
 									System.out.println("User entered incorrect username or password");
 
 								}
