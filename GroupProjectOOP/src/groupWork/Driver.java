@@ -501,6 +501,7 @@ public class Driver {
 												break;
 
 										}
+										break;
 									}
 								}
 								cFile.close();
@@ -557,6 +558,7 @@ public class Driver {
 												System.out.println("Invalid input");
 
 										}
+										break;
 
 									}
 									
